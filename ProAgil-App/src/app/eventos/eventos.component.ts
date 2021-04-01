@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventos.component.css']
 })
 export class EventosComponent implements OnInit {
-  eventos: any;
+  eventos: any = {};
+  filtroLista = '';
+
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line:typedef

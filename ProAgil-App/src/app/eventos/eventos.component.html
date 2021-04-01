@@ -1,13 +1,17 @@
-<form class="form-inline">
+<div class="form-inline">
   <div class="form-group md-2">
-    <input type="text" class="form-control mr-2" placeholder="Buscar">
+    <input type="text" class="form-control mr-2" placeholder="Buscar"
+    [(ngModel)]="filtroLista"
+    >
     <button class="btn btn-outline-success">buscar</button>
   </div>
-</form>
+</div>
+<h3>{{filtroLista}}</h3>
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
       <th>ID</th>
+      <th>Imagem</th>
       <th>Tema</th>
       <th>Local</th>
       <th>Data evento</th>
@@ -16,15 +20,29 @@
       <th>Opções</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of eventos">
+      <td>{{evento.id}}</td>
+      <td>
+        <img src="http://localhost/5000/img/{{evento.imagemURL}}">
+        </td>
+      <td>{{evento.tema}}</td>
+      <td>{{evento.local}}</td>
+      <td>{{evento.dataEvento}}</td>
+      <td>{{evento.qtdPessoas}}</td>
+      <td>{{evento.lote | uppercase}}</td>
       <td></td>
     </tr>
   </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr colspan="7" class="text-center">
+      <h4>Nenhum evento encontrado!</h4>
+    </tr>
+  </tfoot>
 </table>
+<div *ngFor="let evento of eventos">
+  Tema: {{evento.tema}
+  <br>
+  Local: {{evento.dataEvento}}
+  <hr>
+</div>
